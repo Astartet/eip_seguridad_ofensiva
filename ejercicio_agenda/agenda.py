@@ -87,27 +87,25 @@ class Contacto(Direccion,Persona,Telefono):
         print(self.mostrarTelefono())
         print("\tEmail: ",self.email)
 class Agenda:
+
     def __init__(self):
-        self.listaContactos = ""
         self.path = "./agenda.txt"
+        self.listaContactos = ""
+        
+        
+    
 
     def cargarContactos(self):
+        with open(self.path, 'r') as f:
+            self.listaContactos = f.read()
+        print(self.listaContactos)
+    def guardarContacto(self):
+        self.listaContactos = "Rodriguez"
+        with open(self.path, 'w') as f:
+            f.write(self.listaContactos)
+            
 
-        archivo = open(self.path, 'r')
-        datos = [line[:-1] for line in archivo]
-        print(datos)
-c = Contacto()
-c.setCalle("falsa")
-c.setPiso("6ºA")
-c.setCiudad("CORODBA")
-c.setCP(14005)
-c.setNombre("JORGE")
-c.setApellidos("RODRIGUEZ MORA")
-c.setFechaNacimiento("21/12/1992")
-c.setTfijo(957455086)
-c.setTmovil(611145548)
-c.setTtrabajo(611145548)
-c.setEmail("jorgemovil2112@gmail.com")
-c.mostrarContacto()
+        
 a = Agenda()
+a.guardarContacto()
 a.cargarContactos()
